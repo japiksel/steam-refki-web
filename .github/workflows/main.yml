@@ -1,0 +1,25 @@
+name: Daily update gallery2
+
+on:
+  schedule:
+    # cron w UTC: 21:00 CET = 19:00 UTC (latem UTC+2)
+    - cron: '25 19 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+      - name: Generate and download capsules
+        run: python steam_popular_new_capsules.py --download --gallery
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore: daily gallery update"
