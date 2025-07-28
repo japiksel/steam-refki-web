@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steam Popular New Releases Gallery</title>
+  <style>
+    body{margin:0;padding:20px;font-family:sans-serif;}
+    .container{max-width:1920px;margin:0 auto;padding:10px;}
+    .filters{margin-bottom:20px;}
+    .filter{display:inline-block;margin:0 10px 10px 0;padding:5px 10px;background:#eee;border-radius:5px;cursor:pointer;}
+    .filter.active{background:#6cf;color:#000;}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;}
+    @media(max-width:1200px){.grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:768px){.grid{grid-template-columns:1fr;}}
+    .card{position:relative;overflow:hidden;}
+    .card img{width:100%;height:auto;display:block;}
+    .overlay{position:absolute;top:0;left:0;width:100%;height:100%;
+             background:rgba(0,0,0,0.6);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
+             text-align:center;padding:10px;opacity:0;transition:opacity .3s;}
+    .card:hover .overlay{opacity:1;}
+    .overlay .title{font-size:1.2em;font-weight:bold;margin-bottom:.5em;}
+    .overlay .tags{font-size:.9em;}
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{
+      const filters = document.querySelectorAll(".filter");
+      filters.forEach(f=>{f.addEventListener("click",()=>{
+        f.classList.toggle("active");
+        const active = Array.from(filters).filter(x=>x.classList.contains("active")).map(x=>x.dataset.tag);
+        document.querySelectorAll(".card").forEach(card=>{
+          const tags = card.dataset.tags ? card.dataset.tags.split(",") : [];
+          const show = active.length===0 || active.some(t=>tags.includes(t));
+          card.closest("a").style.display = show ? "block" : "none";
+        });
+      })});
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Steam Popular New Releases Gallery</h1>
+    <div class="filters">
+      <span class="filter" data-tag="Multiplayer">Multiplayer (5)</span>
+      <span class="filter" data-tag="Early Access">Early Access (3)</span>
+      <span class="filter" data-tag="Simulation">Simulation (3)</span>
+      <span class="filter" data-tag="Action">Action (3)</span>
+      <span class="filter" data-tag="Dark Fantasy">Dark Fantasy (3)</span>
+      <span class="filter" data-tag="PvP">PvP (3)</span>
+      <span class="filter" data-tag="City Builder">City Builder (3)</span>
+      <span class="filter" data-tag="Roguelike">Roguelike (3)</span>
+      <span class="filter" data-tag="Strategy">Strategy (3)</span>
+      <span class="filter" data-tag="Colony Sim">Colony Sim (3)</span>
+      <span class="filter" data-tag="Post-apocalyptic">Post-apocalyptic (2)</span>
+      <span class="filter" data-tag="Automobile Sim">Automobile Sim (2)</span>
+      <span class="filter" data-tag="Singleplayer">Singleplayer (2)</span>
+      <span class="filter" data-tag="Story Rich">Story Rich (2)</span>
+      <span class="filter" data-tag="Pixel Graphics">Pixel Graphics (2)</span>
+      <span class="filter" data-tag="Action RPG">Action RPG (2)</span>
+      <span class="filter" data-tag="Exploration">Exploration (2)</span>
+      <span class="filter" data-tag="Life Sim">Life Sim (2)</span>
+      <span class="filter" data-tag="Open World">Open World (2)</span>
+      <span class="filter" data-tag="Co-op">Co-op (2)</span>
+      <span class="filter" data-tag="Realistic">Realistic (2)</span>
+      <span class="filter" data-tag="Survival">Survival (2)</span>
+      <span class="filter" data-tag="Base Building">Base Building (2)</span>
+      <span class="filter" data-tag="FPS">FPS (2)</span>
+      <span class="filter" data-tag="Fantasy">Fantasy (2)</span>
+      <span class="filter" data-tag="Roguelite">Roguelite (2)</span>
+      <span class="filter" data-tag="Vehicular Combat">Vehicular Combat (1)</span>
+      <span class="filter" data-tag="Boomer Shooter">Boomer Shooter (1)</span>
+      <span class="filter" data-tag="Metroidvania">Metroidvania (1)</span>
+      <span class="filter" data-tag="2D Platformer">2D Platformer (1)</span>
+      <span class="filter" data-tag="Action-Adventure">Action-Adventure (1)</span>
+      <span class="filter" data-tag="Looter Shooter">Looter Shooter (1)</span>
+      <span class="filter" data-tag="Top-Down Shooter">Top-Down Shooter (1)</span>
+      <span class="filter" data-tag="Spaceships">Spaceships (1)</span>
+      <span class="filter" data-tag="Crime">Crime (1)</span>
+      <span class="filter" data-tag="Immersive Sim">Immersive Sim (1)</span>
+      <span class="filter" data-tag="Adventure">Adventure (1)</span>
+      <span class="filter" data-tag="Visual Novel">Visual Novel (1)</span>
+      <span class="filter" data-tag="Interactive Fiction">Interactive Fiction (1)</span>
+      <span class="filter" data-tag="Choose Your Own Adventure">Choose Your Own Adventure (1)</span>
+      <span class="filter" data-tag="3D">3D (1)</span>
+      <span class="filter" data-tag="Sports">Sports (1)</span>
+      <span class="filter" data-tag="Bikes">Bikes (1)</span>
+      <span class="filter" data-tag="Cinematic">Cinematic (1)</span>
+      <span class="filter" data-tag="Magic">Magic (1)</span>
+      <span class="filter" data-tag="Horror">Horror (1)</span>
+      <span class="filter" data-tag="Survival Horror">Survival Horror (1)</span>
+      <span class="filter" data-tag="Demons">Demons (1)</span>
+      <span class="filter" data-tag="Relaxing">Relaxing (1)</span>
+      <span class="filter" data-tag="Resource Management">Resource Management (1)</span>
+      <span class="filter" data-tag="Economy">Economy (1)</span>
+      <span class="filter" data-tag="Real-Time with Pause">Real-Time with Pause (1)</span>
+      <span class="filter" data-tag="Turn-Based Tactics">Turn-Based Tactics (1)</span>
+      <span class="filter" data-tag="Tactical RPG">Tactical RPG (1)</span>
+      <span class="filter" data-tag="Female Protagonist">Female Protagonist (1)</span>
+      <span class="filter" data-tag="War">War (1)</span>
+      <span class="filter" data-tag="Auto Battler">Auto Battler (1)</span>
+      <span class="filter" data-tag="Battle Royale">Battle Royale (1)</span>
+      <span class="filter" data-tag="MOBA">MOBA (1)</span>
+      <span class="filter" data-tag="Hero Shooter">Hero Shooter (1)</span>
+      <span class="filter" data-tag="Family Friendly">Family Friendly (1)</span>
+      <span class="filter" data-tag="Cute">Cute (1)</span>
+      <span class="filter" data-tag="Online Co-Op">Online Co-Op (1)</span>
+      <span class="filter" data-tag="Open World Survival Craft">Open World Survival Craft (1)</span>
+      <span class="filter" data-tag="Crafting">Crafting (1)</span>
+      <span class="filter" data-tag="Stylized">Stylized (1)</span>
+      <span class="filter" data-tag="Hack and Slash">Hack and Slash (1)</span>
+      <span class="filter" data-tag="Space">Space (1)</span>
+      <span class="filter" data-tag="Nature">Nature (1)</span>
+      <span class="filter" data-tag="Racing">Racing (1)</span>
+      <span class="filter" data-tag="Driving">Driving (1)</span>
+      <span class="filter" data-tag="VR">VR (1)</span>
+      <span class="filter" data-tag="RTS">RTS (1)</span>
+      <span class="filter" data-tag="2D Fighter">2D Fighter (1)</span>
+      <span class="filter" data-tag="Arcade">Arcade (1)</span>
+      <span class="filter" data-tag="Beat 'em up">Beat 'em up (1)</span>
+      <span class="filter" data-tag="2D">2D (1)</span>
+      <span class="filter" data-tag="Point & Click">Point & Click (1)</span>
+      <span class="filter" data-tag="Investigation">Investigation (1)</span>
+      <span class="filter" data-tag="Thriller">Thriller (1)</span>
+      <span class="filter" data-tag="Tower Defense">Tower Defense (1)</span>
+      <span class="filter" data-tag="First-Person">First-Person (1)</span>
+      <span class="filter" data-tag="Shooter">Shooter (1)</span>
+      <span class="filter" data-tag="Management">Management (1)</span>
+      <span class="filter" data-tag="RPG">RPG (1)</span>
+      <span class="filter" data-tag="Real Time Tactics">Real Time Tactics (1)</span>
+      <span class="filter" data-tag="Sandbox">Sandbox (1)</span>
+    </div>
+    <div class="grid">
+      <a href="https://store.steampowered.com/app/1920430" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Vehicular Combat,Post-apocalyptic,Automobile Sim,Boomer Shooter,Singleplayer"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1920430/capsule_616x353.jpg?t=1753726256" alt="FUMES"><div class="overlay"><div class="title">FUMES</div><div class="tags">Vehicular Combat, Post-apocalyptic, Automobile Sim, Boomer Shooter, Singleplayer</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2350270" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Story Rich,Metroidvania,2D Platformer,Pixel Graphics,Action-Adventure"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2350270/capsule_616x353.jpg?t=1753712438" alt="Primal Planet"><div class="overlay"><div class="title">Primal Planet</div><div class="tags">Story Rich, Metroidvania, 2D Platformer, Pixel Graphics, Action-Adventure</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2098160" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Early Access,Action RPG,Looter Shooter,Top-Down Shooter,Spaceships"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2098160/35e3e4793af40d1ae35de7df7bc4c0af68e87b89/capsule_616x353_alt_assets_0.jpg?t=1753723165" alt="Star Vortex"><div class="overlay"><div class="title">Star Vortex</div><div class="tags">Early Access, Action RPG, Looter Shooter, Top-Down Shooter, Spaceships</div></div></div></a>
+      <a href="https://store.steampowered.com/app/3672720" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Simulation,Exploration,Life Sim,Crime,Immersive Sim"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3672720/9e04f3e960f0ceaf00f711206998e18d36a1ec37/capsule_616x353.jpg?t=1753452716" alt="Prison Escape Simulator: Dig Out"><div class="overlay"><div class="title">Prison Escape Simulator: Dig Out</div><div class="tags">Simulation, Exploration, Life Sim, Crime, Immersive Sim</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2752180" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Adventure,Visual Novel,Interactive Fiction,Choose Your Own Adventure,3D"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2752180/5ed8be45c782dcde76b91dd12b70e78e797914b3/capsule_616x353.jpg?t=1753426817" alt="No Sleep For Kaname Date - From AI: THE SOMNIUM FILES"><div class="overlay"><div class="title">No Sleep For Kaname Date - From AI: THE SOMNIUM FILES</div><div class="tags">Adventure, Visual Novel, Interactive Fiction, Choose Your Own Adventure, 3D</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2926900" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Early Access,Sports,Open World,Bikes,Cinematic"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2926900/21cbd0505d76f68b23da65d0c726e09f59774031/capsule_616x353.jpg?t=1753390876" alt="MAVRIX by Matt Jones"><div class="overlay"><div class="title">MAVRIX by Matt Jones</div><div class="tags">Early Access, Sports, Open World, Bikes, Cinematic</div></div></div></a>
+      <a href="https://store.steampowered.com/app/3716600" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Early Access,Action,Dark Fantasy,Magic,PvP"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3716600/e245a7cf3cadf5331c1155b6c082a38fe01a2ae9/capsule_616x353.jpg?t=1753574038" alt="Mage Arena"><div class="overlay"><div class="title">Mage Arena</div><div class="tags">Early Access, Action, Dark Fantasy, Magic, PvP</div></div></div></a>
+      <a href="https://store.steampowered.com/app/1850740" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Horror,Co-op,Survival Horror,Multiplayer,Demons"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1850740/capsule_616x353.jpg?t=1753369724" alt="Ghost Watchers"><div class="overlay"><div class="title">Ghost Watchers</div><div class="tags">Horror, Co-op, Survival Horror, Multiplayer, Demons</div></div></div></a>
+      <a href="https://store.steampowered.com/app/1313290" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="City Builder,Relaxing,Resource Management,Economy,Real-Time with Pause"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1313290/151c989fdb194f89a0ce0a4d1a85340a3a80687c/capsule_616x353_alt_assets_1.jpg?t=1753711079" alt="Let Them Trade"><div class="overlay"><div class="title">Let Them Trade</div><div class="tags">City Builder, Relaxing, Resource Management, Economy, Real-Time with Pause</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2454960" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Turn-Based Tactics,Tactical RPG,Female Protagonist,War,Auto Battler"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2454960/ce16d262364de1bc52ae0f6d53e2bd0ba7cfdbfc/capsule_616x353.jpg?t=1753440123" alt="The Great Villainess: Strategy of Lily"><div class="overlay"><div class="title">The Great Villainess: Strategy of Lily</div><div class="tags">Turn-Based Tactics, Tactical RPG, Female Protagonist, War, Auto Battler</div></div></div></a>
+      <a href="https://store.steampowered.com/app/1283700" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Battle Royale,MOBA,Hero Shooter,PvP,Multiplayer"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1283700/2e02ad9870c796036c07d4eddda09ca4aca4774f/capsule_616x353.jpg?t=1753673596" alt="SUPERVIVE"><div class="overlay"><div class="title">SUPERVIVE</div><div class="tags">Battle Royale, MOBA, Hero Shooter, PvP, Multiplayer</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2658510" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Simulation,Family Friendly,Multiplayer,Cute,Realistic"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2658510/cef0a982b90cb059ebffe327c93fc13c044de7c4/capsule_616x353.jpg?t=1753483472" alt="Animal Shelter 2"><div class="overlay"><div class="title">Animal Shelter 2</div><div class="tags">Simulation, Family Friendly, Multiplayer, Cute, Realistic</div></div></div></a>
+      <a href="https://store.steampowered.com/app/427410" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Survival,Online Co-Op,Open World Survival Craft,Crafting,Base Building"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/ea0a048c538cabb9391f2c4f12a8939123f6d0a5/capsule_616x353.jpg?t=1753313427" alt="Abiotic Factor"><div class="overlay"><div class="title">Abiotic Factor</div><div class="tags">Survival, Online Co-Op, Open World Survival Craft, Crafting, Base Building</div></div></div></a>
+      <a href="https://store.steampowered.com/app/1782460" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Action RPG,Stylized,Roguelike,Hack and Slash,Dark Fantasy"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1782460/3fa96b1356adbb7243267b4262356b22774d0944/capsule_616x353.jpg?t=1753725496" alt="Hell Clock"><div class="overlay"><div class="title">Hell Clock</div><div class="tags">Action RPG, Stylized, Roguelike, Hack and Slash, Dark Fantasy</div></div></div></a>
+      <a href="https://store.steampowered.com/app/3504780" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Multiplayer,PvP,Space,FPS,Co-op"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3504780/d71ef35bb8a8940a695c25311393d478359948ff/capsule_616x353.jpg?t=1753323616" alt="Wildgate"><div class="overlay"><div class="title">Wildgate</div><div class="tags">Multiplayer, PvP, Space, FPS, Co-op</div></div></div></a>
+      <a href="https://store.steampowered.com/app/926990" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Life Sim,Survival,Nature,Open World,Multiplayer"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/926990/capsule_616x353.jpg?t=1753190447" alt="WolfQuest: Anniversary Edition"><div class="overlay"><div class="title">WolfQuest: Anniversary Edition</div><div class="tags">Life Sim, Survival, Nature, Open World, Multiplayer</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2399420" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Racing,Automobile Sim,Driving,VR,Realistic"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2399420/eefeee37cce081143c54630d2b29879499eba20e/capsule_616x353.jpg?t=1753362438" alt="Le Mans Ultimate"><div class="overlay"><div class="title">Le Mans Ultimate</div><div class="tags">Racing, Automobile Sim, Driving, VR, Realistic</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2753900" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="RTS,Dark Fantasy,Roguelike,Base Building,Fantasy"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753900/38b0cb96ceb8b2065cfda5710b788bbd83f00a6a/capsule_616x353_alt_assets_0.jpg?t=1753433786" alt="The King is Watching"><div class="overlay"><div class="title">The King is Watching</div><div class="tags">RTS, Dark Fantasy, Roguelike, Base Building, Fantasy</div></div></div></a>
+      <a href="https://store.steampowered.com/app/3249650" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Action,2D Fighter,Arcade,Beat 'em up,2D"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3249650/2e0268d28cd972d8d7b4ba52a5174c840bdac85e/capsule_616x353.jpg?t=1752846370" alt="Little Fighter 2 Remastered"><div class="overlay"><div class="title">Little Fighter 2 Remastered</div><div class="tags">Action, 2D Fighter, Arcade, Beat 'em up, 2D</div></div></div></a>
+      <a href="https://store.steampowered.com/app/1170570" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Story Rich,Point & Click,Pixel Graphics,Investigation,Thriller"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1170570/833fab86e4cb1ce54ed27a6b048dd0ff43f5fad0/capsule_616x353.jpg?t=1752771509" alt="The Drifter"><div class="overlay"><div class="title">The Drifter</div><div class="tags">Story Rich, Point & Click, Pixel Graphics, Investigation, Thriller</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2821800" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Strategy,Colony Sim,Roguelite,Exploration,Tower Defense"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2821800/273323a9f3915d9829006747c96c08fced3acbc4/capsule_616x353_alt_assets_2.jpg?t=1753201763" alt="Drill Core"><div class="overlay"><div class="title">Drill Core</div><div class="tags">Strategy, Colony Sim, Roguelite, Exploration, Tower Defense</div></div></div></a>
+      <a href="https://store.steampowered.com/app/3527760" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Action,FPS,First-Person,Singleplayer,Shooter"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3527760/0fb23456bf47c3b2a63ee06a488a34fa51bf2f62/capsule_616x353.jpg?t=1753173967" alt="RoboCop: Rogue City - Unfinished Business"><div class="overlay"><div class="title">RoboCop: Rogue City - Unfinished Business</div><div class="tags">Action, FPS, First-Person, Singleplayer, Shooter</div></div></div></a>
+      <a href="https://store.steampowered.com/app/1121640" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Simulation,Management,City Builder,Post-apocalyptic,Colony Sim"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1121640/0e6b819ca45a96deca24877a6cd4ea9742ef8241/capsule_616x353_alt_assets_1.jpg?t=1753377821" alt="The Wandering Village"><div class="overlay"><div class="title">The Wandering Village</div><div class="tags">Simulation, Management, City Builder, Post-apocalyptic, Colony Sim</div></div></div></a>
+      <a href="https://store.steampowered.com/app/2824490" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Strategy,RPG,Roguelike,Roguelite,Fantasy"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2824490/5be29ce8cd46f316c9d3951cd71d58b6604fc3ae/capsule_616x353.jpg?t=1753379651" alt="He is Coming"><div class="overlay"><div class="title">He is Coming</div><div class="tags">Strategy, RPG, Roguelike, Roguelite, Fantasy</div></div></div></a>
+      <a href="https://store.steampowered.com/app/3024040" target="_blank" rel="noopener noreferrer"><div class="card" data-tags="Strategy,Real Time Tactics,City Builder,Colony Sim,Sandbox"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3024040/6a538ecab77ccee4bdb28d328c4962b7ce69e702/capsule_616x353.jpg?t=1753292258" alt="Stronghold Crusader: Definitive Edition"><div class="overlay"><div class="title">Stronghold Crusader: Definitive Edition</div><div class="tags">Strategy, Real Time Tactics, City Builder, Colony Sim, Sandbox</div></div></div></a>
+    </div>
+  </div>
+</body>
+</html>
