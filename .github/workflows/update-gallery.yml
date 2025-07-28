@@ -2,7 +2,7 @@ name: Daily update gallery
 
 on:
   schedule:
-    # cron w UTC: 21:01 CET = 19:01 UTC (latem UTC+2)
+    # cron w UTC: 21:05 CET = 19:05 UTC (latem UTC+2)
     - cron: '0 19 * * *'
 
 jobs:
