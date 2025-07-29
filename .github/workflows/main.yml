@@ -3,7 +3,7 @@ name: Daily update gallery2
 on:
   schedule:
     # cron w UTC: 21:00 CET = 19:00 UTC (latem UTC+2)
-    - cron: '25 19 * * *'
+    - cron: '00 18 * * *'
 
 jobs:
   build:
