@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4
       - name: Generate and download capsules
-        run: python steam_popular_new_capsules.py --download --gallery
+        run: python steam_week_capsules --download --gallery
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
